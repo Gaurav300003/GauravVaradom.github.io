@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Varadom Technologies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bubble.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .products-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: #009fe3;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .product-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #009fe3;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-title {
+            color: #009fe3;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            color: #444;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #009fe3;
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #009fe3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .view-details-btn:hover {
+            background-color: #0082ba;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #fff;
+            color: #009fe3;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 2px solid #009fe3;
+            margin-bottom: 30px;
+        }
+
+        .back-btn:hover {
+            background-color: #009fe3;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .product-cards-grid {
+                grid-template-columns: 1fr;
+                margin: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animation Container -->
+    <div class="bubble-container">
+        <div class="water-droplet"></div>
+        <div class="water-droplet"></div>
+        <div class="water-droplet"></div>
+        <div class="water-droplet"></div>
+        <div class="water-droplet"></div>
+        <div class="water-droplet"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="header-center-row">
+        <div class="logo-circle">
+            <img src="logo.jpeg" alt="Varadom Technologies Logo" class="main-logo">
+        </div>
+        <div class="company-name">VARADOM TECHNOLOGIES</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav ats-style">
+        <div class="container nav-center">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Company</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="navbar-dropdown-space"></div>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <a href="products.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Categories
+            </a>
+            
+            <div class="section-title">
+                <h2 id="categoryTitle">Category Products</h2>
+                <p id="categoryDescription">Explore our range of products in this category.</p>
+            </div>
+
+            <div class="product-cards-grid" id="productCardsGrid">
+                <!-- Product cards will be dynamically populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <!-- ... existing footer content ... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="categories-data.js"></script>
+    <script src="product-data.js"></script>
+    <script>
+        // Get category from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryKey = urlParams.get('category');
+
+        // Populate products for the category
+        function populateProducts() {
+            const category = categoryData[categoryKey];
+            if (!category) {
+                window.location.href = 'products.html';
+                return;
+            }
+
+            // Set category title and description
+            document.getElementById('categoryTitle').textContent = category.title;
+            document.getElementById('categoryDescription').textContent = category.description;
+
+            // Populate product cards
+            const productCardsGrid = document.getElementById('productCardsGrid');
+            category.products.forEach(productName => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const productInfo = productData[productName];
+                const features = extractFeatures(productInfo.content);
+                
+                productCard.innerHTML = `
+                    <img src="product-images/${productName.toLowerCase().replace(/ /g, '-')}.jpg" 
+                         alt="${productName}" 
+                         class="product-image"
+                         onerror="this.src='product-images/placeholder.jpg'">
+                    <div class="product-content">
+                        <h3 class="product-title">${productName}</h3>
+                        <ul class="features-list">
+                            ${features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        <a href="product-details.html?product=${encodeURIComponent(productName)}" 
+                           class="view-details-btn">View Details</a>
+                    </div>
+                `;
+                productCardsGrid.appendChild(productCard);
+            });
+        }
+
+        // Helper function to extract key features from product content
+        function extractFeatures(content) {
+            const features = [];
+            const lines = content.split('\n');
+            for (let line of lines) {
+                if (line.trim().startsWith('•') || line.trim().startsWith('-')) {
+                    features.push(line.trim().substring(1).trim());
+                }
+            }
+            return features.slice(0, 3); // Return top 3 features
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', populateProducts);
+    </script>
+</body>
+</html> 
